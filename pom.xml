@@ -11,10 +11,10 @@
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
   <name>Importer Marketplace package parent</name>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.2-SNAPSHOT</version>
 
   <properties>
-    <marketplace.importer.version>1.1.1-SNAPSHOT</marketplace.importer.version>
+    <marketplace.importer.version>1.2-SNAPSHOT</marketplace.importer.version>
   </properties>
 
   <modules>

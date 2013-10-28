@@ -3,32 +3,6 @@
   <title>Bulk document importer</title>
   <description>
     <p>Multi threaded document importer from server filesystem.</p>
-    <p>
-      The file importer comes as a Java library (with nuxeo runtime service)
-      and a sample JAX-RS interface to launch, monitor and abort import jobs.
-      <br />
-      <br />
-      To import the folder '/path/to/import' into the workspace
-      '/default-domain/workspaces/some-workspace' while monitoring the import
-      logs from a REST client use the following HTTP GET queries:
-      <br />
-      <code>GET http://localhost:8080/nuxeo/site/fileImporter/logActivate</code>
-      <br />
-      <code>GET http://localhost:8080/nuxeo/site/fileImporter/run?targetPath=/default-domain/workspaces/some-workspace&amp;inputPath=/path/to/import&amp;batchSize=10&amp;interactive=false&amp;nbThreads=4</code>
-      <br />
-      <code>GET http://localhost:8080/nuxeo/site/fileImporter/log</code>
-      <br />
-      <br />
-      To execute those HTTP queries you can either use a browser with an active
-      Nuxeo session (JSESSIONID cookie) or use a third party stateless HTTP
-      client with HTTP Basic Authentication, eg: with the curl command-line
-      client:
-      <br />
-      <code>$ curl --basic -u 'Administrator:Administrator' "http://localhost:8080/nuxeo/site/fileImporter/log"</code>
-      <br />
-      Don't forget to quote the URL if it includes special shell characters such
-      as '&amp;'.
-    </p>
   </description>
   <home-page>http://doc.nuxeo.com/x/OwvF</home-page>
   <vendor>Nuxeo</vendor>

@@ -89,6 +89,7 @@
                 file2="${outdir}/nuxeo-distribution-cap-${nuxeo.distribution.version}.zip"
                 includesfile="${outdir}/includes"
                 excludesfile="${outdir}/excludesfile"
+                ignoreContentPattern=".*\.jar"
                 patternsetid="importer.versus.cap">
     </nx:zipdiff>
     <unzip src="${outdir}/ear-${marketplace.importer.version}.zip"

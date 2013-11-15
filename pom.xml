@@ -3,17 +3,17 @@
   <parent>
     <groupId>org.nuxeo.ecm.distribution</groupId>
     <artifactId>nuxeo-distribution</artifactId>
-    <version>5.9.1-SNAPSHOT</version>
+    <version>5.8.0-HF02-SNAPSHOT</version>
   </parent>
 
   <groupId>org.nuxeo.marketplace.importer</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
   <name>Importer Marketplace package parent</name>
-  <version>1.4.0-SNAPSHOT</version>
+  <version>1.3.0-SNAPSHOT</version>
 
   <properties>
-    <marketplace.importer.version>1.4.0-SNAPSHOT</marketplace.importer.version>
+    <marketplace.importer.version>1.3.0-SNAPSHOT</marketplace.importer.version>
   </properties>
 
   <modules>

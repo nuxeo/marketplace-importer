@@ -17,6 +17,9 @@
     <platform>cap-@DISTRIB_VERSION@</platform>
     <platform>cap-5.8</platform>
   </platforms>
+  <dependencies>
+    <package>nuxeo-5.8.0-HF01</package>
+  </dependencies>
   <license>LGPL</license>
   <license-url>http://www.gnu.org/licenses/lgpl-2.1.html</license-url>
 </package>

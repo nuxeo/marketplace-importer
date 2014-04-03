@@ -16,6 +16,9 @@
   <platforms>
     <platform>cap-@DISTRIB_VERSION@</platform>
   </platforms>
+  <conflicts>
+    <package>nuxeo-scan-importer</package>
+  </conflicts>
   <license>LGPL</license>
   <license-url>http://www.gnu.org/licenses/lgpl-2.1.html</license-url>
 </package>

@@ -36,7 +36,7 @@
     <dependencies>
       <dependency>
         <groupId>org.nuxeo.marketplace.importer</groupId>
-        <artifactId>marketplace</artifactId>
+        <artifactId>marketplace-importer</artifactId>
         <version>${marketplace.importer.version}</version>
         <type>zip</type>
       </dependency>

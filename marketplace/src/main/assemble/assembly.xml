@@ -1,10 +1,6 @@
-<project name="importer-assembly"
-         default="build"
-         xmlns:nx="urn:nuxeo-build"
-         xmlns:artifact="urn:nuxeo-artifact">
+<project name="importer-assembly" default="build" xmlns:nx="urn:nuxeo-build" xmlns:artifact="urn:nuxeo-artifact">
   <taskdef resource="org/nuxeo/build/antlib.xml" uri="urn:nuxeo-build" />
-  <taskdef resource="org/nuxeo/build/artifact/antlib.xml"
-           uri="urn:nuxeo-artifact" />
+  <taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
 
   <target name="init" unless="init.done">
     <property name="outdir" value="${maven.project.build.directory}" />
@@ -14,21 +10,15 @@
 
   <target name="expand">
     <!-- Include your artifacts in the graph adding your groupId to groupPrefixes -->
-    <artifact:nuxeo-expand includeTestScope="true"
-                           groupPrefixes="org.nuxeo,com.nuxeo" />
+    <artifact:nuxeo-expand includeTestScope="true" groupPrefixes="org.nuxeo" />
     <!-- For Nuxeo IDE being able to use that distribution as a SDK -->
-    <artifact:print output="${outdir}/artifacts-importer.properties"
-                    mode="sdk" />
-    <artifact:print output="${outdir}/test-artifacts-importer.properties"
-                    mode="sdk"
-                    scopes="test" />
+    <artifact:print output="${outdir}/artifacts-importer.properties" mode="sdk" />
+    <artifact:print output="${outdir}/test-artifacts-importer.properties" mode="sdk" scopes="test" />
     <!-- Prints the graph for debugging purpose -->
     <artifact:print output="${outdir}/dependency-tree.log" />
   </target>
 
-  <target name="build"
-          depends="init"
-          description="Build Nuxeo importer Marketplace package">
+  <target name="build" depends="init" description="Build Nuxeo importer Marketplace package">
     <tstamp />
     <delete failonerror="false" dir="${outdir}/ear" />
     <mkdir dir="${outdir}/ear" />
@@ -41,10 +31,8 @@
         <filter token="DISTRIB_VERSION" value="${nuxeo.distribution.version}" />
       </filterset>
     </copy>
-    <copy file="${outdir}/artifacts-importer.properties"
-          todir="${outdir}/marketplace/install" />
-    <copy file="${outdir}/test-artifacts-importer.properties"
-          todir="${outdir}/marketplace/install" />
+    <copy file="${outdir}/artifacts-importer.properties" todir="${outdir}/marketplace/install" />
+    <copy file="${outdir}/test-artifacts-importer.properties" todir="${outdir}/marketplace/install" />
 
     <!-- Base distribution EAR -->
     <copy todir="${outdir}">
@@ -56,9 +44,10 @@
       <artifact:set>
         <includes>
           <artifact groupId="org.nuxeo*" scope="!test" type="!pom" />
-          <!-- Include your artifacts using their groupId for instance -->
-          <artifact groupId="com.nuxeo*" scope="!test" type="!pom" />
         </includes>
+        <excludes>
+          <artifact groupId="org.nuxeo.lib*" />
+        </excludes>
       </artifact:set>
     </copy>
     <!-- Third-party libraries -->
@@ -66,23 +55,13 @@
       <artifact:set>
         <includes>
           <artifact groupId="!org.nuxeo*" scope="!test" />
+          <artifact groupId="org.nuxeo.lib*" scope="!test" />
         </includes>
-        <excludes>
-          <!-- Filter out your artifacts using their groupId for instance -->
-          <artifact groupId="com.nuxeo*" />
-        </excludes>
       </artifact:set>
     </copy>
-    <move todir="${outdir}/ear/lib">
-      <fileset dir="${outdir}/ear/bundles">
-        <include name="nuxeo-generic-wss-front*" />
-        <include name="nuxeo-generic-wss-handler*" />
-      </fileset>
-    </move>
     <nx:rmdups dir="${outdir}/ear/lib" />
     <!-- Temporary ZIP Nuxeo EAR to compare with base distribution EAR -->
-    <zip destfile="${outdir}/ear-${marketplace.importer.version}.zip"
-         basedir="${outdir}/ear" />
+    <zip destfile="${outdir}/ear-${marketplace.importer.version}.zip" basedir="${outdir}/ear" />
 
     <!-- Your MP only needs to include files not already provided by the base distribution -->
     <nx:zipdiff file1="${outdir}/ear-${marketplace.importer.version}.zip"
@@ -92,15 +71,13 @@
                 ignoreContentPattern=".*\.jar"
                 patternsetid="importer.versus.cap">
     </nx:zipdiff>
-    <unzip src="${outdir}/ear-${marketplace.importer.version}.zip"
-           dest="${outdir}/marketplace/install">
+    <unzip src="${outdir}/ear-${marketplace.importer.version}.zip" dest="${outdir}/marketplace/install">
       <patternset refid="importer.versus.cap" />
     </unzip>
 
     <zip destfile="${outdir}/${maven.project.artifactId}-${marketplace.importer.version}.zip"
          basedir="${outdir}/marketplace" />
-    <artifact:attach file="${outdir}/${maven.project.artifactId}-${marketplace.importer.version}.zip"
-                     type="zip" />
+    <artifact:attach file="${outdir}/${maven.project.artifactId}-${marketplace.importer.version}.zip" type="zip" />
   </target>
 
 </project>

@@ -117,6 +117,12 @@
     <zip destfile="${outdir}/${maven.project.artifactId}-${marketplace.importer.version}.zip"
          basedir="${outdir}/marketplace" />
     <artifact:attach file="${outdir}/${maven.project.artifactId}-${marketplace.importer.version}.zip" type="zip" />
+
+    <!-- cleanups -->
+    <delete dir="${outdir}/marketplace" failonerror="false" />
+    <delete dir="${outdir}/ear" failonerror="false" />
+    <delete file="${outdir}/nuxeo-nxr-server-${nuxeo.distribution.version}.zip" failonerror="false" />
+    <delete file="${outdir}/ear-${maven.project.version}.zip" failonerror="false" />
   </target>
 
 </project>
